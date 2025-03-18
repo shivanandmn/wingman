@@ -1,0 +1,7 @@
+# API configuration
+api:
+  openai:
+    api_key: ${OPENAI_API_KEY}
+    model: gpt-4o-mini
+    temperature: 0.7
+    max_tokens: 4000

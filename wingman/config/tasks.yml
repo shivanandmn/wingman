@@ -1,0 +1,19 @@
+# Task configurations
+tasks:
+  research_task:
+    description: Research {topic} and gather key information
+    expected_output: Comprehensive research notes on {topic}
+    agent: researcher
+    async_execution: false
+    
+  writing_task:
+    description: Write a detailed article about {topic} based on the research provided
+    expected_output: Well-structured article on {topic}
+    agent: writer
+    async_execution: false
+    
+  review_task:
+    description: Review and improve the article on {topic}
+    expected_output: Polished final article on {topic}
+    agent: reviewer
+    async_execution: false

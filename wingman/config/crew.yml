@@ -1,0 +1,16 @@
+# Crew configuration
+crew:
+  content_creation_crew:
+    name: Content Creation Crew
+    description: A crew of agents that work together to research, write, and review content
+    agents:
+      - researcher
+      - writer
+      - reviewer
+    tasks:
+      - research_task
+      - writing_task
+      - review_task
+    verbose: true
+    process: sequential  # Execute tasks sequentially
+    max_rpm: 10  # Rate limit for API calls
