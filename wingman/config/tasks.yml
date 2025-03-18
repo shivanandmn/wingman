@@ -1,19 +1,102 @@
-# Task configurations
+# AI Wingman Task configurations
 tasks:
-  research_task:
-    description: Research {topic} and gather key information
-    expected_output: Comprehensive research notes on {topic}
-    agent: researcher
+  analyze_emotions_task:
+    description: |
+      Analyze the emotional cues and tones in the provided transcript between the couple:
+      1. Identify emotions expressed by each partner
+      2. Detect emotional triggers in the conversation
+      3. Analyze emotional dynamics and patterns
+      4. Provide recommendations for addressing emotional issues
+      
+      Transcript: {transcript}
+      Conflict types: {conflict_types}
+      Partner A background: {partner_a_background}
+      Partner B background: {partner_b_background}
+    expected_output: Detailed analysis of emotional tones, triggers, and dynamics
+    agent: emotion_recognition_agent
     async_execution: false
     
-  writing_task:
-    description: Write a detailed article about {topic} based on the research provided
-    expected_output: Well-structured article on {topic}
-    agent: writer
+  simulate_partner_a_task:
+    description: |
+      Based on the emotion analysis, simulate the perspective and potential reactions of Partner A:
+      1. Represent Partner A's emotional state and perspective
+      2. Provide potential dialogue for Partner A
+      
+      Emotion analysis: {emotion_analysis}
+      Partner A background: {partner_a_background}
+      Conflict types: {conflict_types}
+      Transcript: {transcript}
+    expected_output: Simulated perspective and potential dialogue for Partner A
+    agent: partner_a_agent
+    async_execution: true
+    
+  simulate_partner_b_task:
+    description: |
+      Based on the emotion analysis, simulate the perspective and potential reactions of Partner B:
+      1. Represent Partner B's emotional state and perspective
+      2. Provide potential dialogue for Partner B
+      
+      Emotion analysis: {emotion_analysis}
+      Partner B background: {partner_b_background}
+      Conflict types: {conflict_types}
+      Transcript: {transcript}
+    expected_output: Simulated perspective and potential dialogue for Partner B
+    agent: partner_b_agent
+    async_execution: true
+    
+  provide_counseling_task:
+    description: |
+      Provide emotional support, empathy, and mediation to guide the dialogue in a productive direction:
+      1. Analyze underlying issues and dynamics
+      2. Create mediation dialogue to help partners communicate better
+      3. Provide guidance for a more productive conversation
+      
+      Emotion analysis: {emotion_analysis}
+      Partner A simulation: {partner_a_simulation}
+      Partner B simulation: {partner_b_simulation}
+      Partner A background: {partner_a_background}
+      Partner B background: {partner_b_background}
+      Conflict types: {conflict_types}
+      Transcript: {transcript}
+    expected_output: Counseling response with analysis, mediation dialogue, and guidance
+    agent: counselor_agent
     async_execution: false
     
-  review_task:
-    description: Review and improve the article on {topic}
-    expected_output: Polished final article on {topic}
-    agent: reviewer
+  provide_encouragement_task:
+    description: |
+      Offer positive reinforcement and motivation for continued positive actions:
+      1. Identify positive behaviors or intentions in the conversation
+      2. Create dialogue to reinforce positive actions
+      3. Provide strategies to motivate continued positive behavior
+      
+      Emotion analysis: {emotion_analysis}
+      Partner A simulation: {partner_a_simulation}
+      Partner B simulation: {partner_b_simulation}
+      Counseling response: {counseling_response}
+      Partner A background: {partner_a_background}
+      Partner B background: {partner_b_background}
+      Conflict types: {conflict_types}
+      Transcript: {transcript}
+    expected_output: Encouragement response with positive observations, reinforcement dialogue, and motivation strategies
+    agent: encourager_agent
+    async_execution: false
+    
+  generate_interaction_task:
+    description: |
+      Generate a complete therapeutic interaction that integrates all previous analyses and responses:
+      1. Combine emotion analysis, partner simulations, counseling, and encouragement
+      2. Create a structured, cohesive interaction that addresses the conflict
+      3. Include specific dialogue for each participant (counselor, encourager, partners)
+      
+      Emotion analysis: {emotion_analysis}
+      Partner A simulation: {partner_a_simulation}
+      Partner B simulation: {partner_b_simulation}
+      Counseling response: {counseling_response}
+      Encouragement response: {encouragement_response}
+      Partner A background: {partner_a_background}
+      Partner B background: {partner_b_background}
+      Conflict types: {conflict_types}
+      Transcript: {transcript}
+    expected_output: Complete therapeutic interaction with integrated dialogue and guidance
+    agent: counselor_agent
     async_execution: false

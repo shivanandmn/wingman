@@ -4,7 +4,7 @@ This module contains all the API routes for the application.
 """
 from fastapi import APIRouter
 
-from app.api.v1 import health, agent
+from app.api.v1 import health, agent, ai_wingman
 
 # Create the main API router
 api_router = APIRouter()
@@ -12,3 +12,4 @@ api_router = APIRouter()
 # Include all routers from different API versions
 api_router.include_router(health.router, prefix="/health", tags=["Health"])
 api_router.include_router(agent.router, prefix="/agent", tags=["Agent"])
+api_router.include_router(ai_wingman.router, prefix="/ai-wingman", tags=["AI Wingman"])

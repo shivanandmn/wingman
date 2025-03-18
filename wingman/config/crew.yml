@@ -1,16 +1,41 @@
-# Crew configuration
+# AI Wingman Crew configuration
 crew:
-  content_creation_crew:
-    name: Content Creation Crew
-    description: A crew of agents that work together to research, write, and review content
+  ai_wingman_crew:
+    name: AI Wingman Crew
+    description: A crew of agents that work together to provide emotional support, empathy, and mediation for couples in conflict
     agents:
-      - researcher
-      - writer
-      - reviewer
+      - counselor_agent
+      - encourager_agent
+      - partner_a_agent
+      - partner_b_agent
+      - emotion_recognition_agent
     tasks:
-      - research_task
-      - writing_task
-      - review_task
+      - analyze_emotions_task
+      - simulate_partner_a_task
+      - simulate_partner_b_task
+      - provide_counseling_task
+      - provide_encouragement_task
+      - generate_interaction_task
     verbose: true
     process: sequential  # Execute tasks sequentially
-    max_rpm: 10  # Rate limit for API calls
+    max_rpm: 20  # Rate limit for API calls
+    task_dependencies:
+      # Define explicit dependencies between tasks
+      simulate_partner_a_task:
+        - analyze_emotions_task  # Partner A simulation depends on emotion analysis
+      simulate_partner_b_task:
+        - analyze_emotions_task  # Partner B simulation depends on emotion analysis
+      provide_counseling_task:
+        - analyze_emotions_task
+        - simulate_partner_a_task
+        - simulate_partner_b_task  # Counseling depends on emotion analysis and partner simulations
+      provide_encouragement_task:
+        - analyze_emotions_task
+        - simulate_partner_a_task
+        - simulate_partner_b_task  # Encouragement depends on emotion analysis and partner simulations
+      generate_interaction_task:
+        - analyze_emotions_task
+        - simulate_partner_a_task
+        - simulate_partner_b_task
+        - provide_counseling_task
+        - provide_encouragement_task  # Interaction depends on all previous tasks

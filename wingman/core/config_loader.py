@@ -55,6 +55,9 @@ def _process_env_vars(config: Any) -> Any:
                 env_value = os.environ.get(match)
                 if env_value is not None:
                     result = result.replace(f'${{{match}}}', env_value)
+                else:
+                    # Log a warning about missing environment variable
+                    print(f"Warning: Environment variable '{match}' not found. Using placeholder value.")
             return result
         return config
     else:

@@ -1,6 +1,6 @@
 # Wingman API
 
-A FastAPI-based API project with an agentic architecture using CrewAI that is Docker-deployable.
+A FastAPI-based API project with an agentic architecture using CrewAI that is Docker-deployable. Includes a specialized AI Wingman module for analyzing conflicts and generating resolution dialogues.
 
 ## Project Structure
 
@@ -29,6 +29,9 @@ wingman/
 │   ├── core/               # Core functionality
 │   │   ├── agent_manager.py # Agent manager
 │   │   ├── config_loader.py # Configuration loader
+│   ├── ai_wingman/        # AI Wingman module
+│   │   ├── session_manager.py # Session manager
+│   │   ├── README.md       # Module documentation
 ├── .env.example            # Example environment variables
 ├── docker-compose.yml      # Docker Compose configuration
 ├── Dockerfile              # Docker configuration
@@ -196,6 +199,42 @@ The agentic architecture works as follows:
 5. **Context Substitution**: When you provide a context (e.g., `{"topic": "AI Ethics"}`), the placeholders in task descriptions and expected outputs (e.g., `{topic}`) are replaced with the corresponding values.
 
 6. **Execution**: When you run a crew, the agents perform their assigned tasks in the specified order (sequential or parallel).
+
+## Couples Therapy Module
+
+The project includes a specialized couples therapy module that uses the agentic architecture to analyze conflicts between couples and generate therapeutic dialogues.
+
+### Features
+
+- **Conflict Analysis**: Analyzes conversation transcripts to identify conflict patterns and underlying issues
+- **Therapeutic Dialogue Generation**: Creates structured dialogues for couples to read aloud to each other
+- **Empathy Building**: Provides guidance for each partner to better understand the other's perspective
+- **Resolution Strategies**: Develops practical strategies for resolving specific types of conflicts
+
+### Using the Couples Therapy Module
+
+```python
+from wingman.couples_therapy import TherapySession
+
+# Create a therapy session
+therapy_session = TherapySession()
+
+# Process a transcript
+results = therapy_session.process_transcript(
+    transcript="[Transcript of the couple's conversation]",
+    conflict_types=["Communication", "Financial disagreements"],
+    partner_a_background="[Background information about partner A]",
+    partner_b_background="[Background information about partner B]"
+)
+
+# Access the results
+conflict_analysis = results["conflict_analysis"]
+therapeutic_dialogue = results["therapeutic_dialogue"]
+empathy_guidance = results["empathy_guidance"]
+resolution_strategies = results["resolution_strategies"]
+```
+
+See the `examples/couples_therapy_example.py` file for a complete example.
 
 ### API Endpoint
 

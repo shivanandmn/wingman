@@ -58,9 +58,16 @@ class AgentManager:
             Any: Created language model
         """
         api_config = self.configs.get('api', {}).get('openai', {})
+        api_key = api_config.get('api_key')
         
+        # Check if API key is None or empty
+        if not api_key:
+            raise ValueError(
+                "OpenAI API key not found. Please set the OPENAI_API_KEY environment variable "
+                "or create a .env file in the project root with OPENAI_API_KEY=your_api_key_here"
+            )
         return ChatOpenAI(
-            api_key=api_config.get('api_key'),
+            api_key=api_key,
             model=api_config.get('model', 'gpt-4o-mini'),
             temperature=api_config.get('temperature', 0.7),
             max_tokens=api_config.get('max_tokens', 4000)
@@ -205,7 +212,7 @@ class AgentManager:
                 tasks=crew_tasks,
                 verbose=crew_data.get('verbose', True),
                 process=process,
-                max_rpm=crew_data.get('max_rpm', 10)
+                max_rpm=crew_data.get('max_rpm', 20)
             )
         
         return crews
